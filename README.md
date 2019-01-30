@@ -5,17 +5,17 @@
 
 ### 项目进展
 
-- 基本完成学生端，正在进行代码整理
-- 基本完成管理端后端，正在开发前端及整理后端代码
+- 已完成基本开发，正在进行改进
 
 ### 本地部署
 
-1. 安装virtualenv
+1. 安装virtualenv (pip install virtualenv)
 2. clone仓库，用virtualenv创建虚拟环境venv，并激活venv
 
 ```bash
 cd Dedekind-Django
-virtualenv venv
+git checkout bs4 #切换到bs4分支，该分支为已发布的公益时平台的版本
+virtualenv venv -p python3
 source venv/bin/activate
 ```
 
@@ -25,22 +25,15 @@ source venv/bin/activate
 pip install -Ur requirements/local.txt
 ```
 
-4. 添加token.py
+4. 初始化数据库，并创建超级用户
 
 ```bash
-touch project/sua/token.py
-echo "TOKEN = 'YourTokenHere'" > project/sua/token.py
+python manage.py makemigrations sua   
+python manage.py migrate          #迁移数据库
+python manage.py createsuperuser  #创建超级用户
 ```
 
-5. 初始化数据库，并创建超级用户
-
-```bash
-python manage.py makemigrations sua
-python manage.py migrate
-python manage.py createsuperuser
-```
-
-6. 启动服务器
+5. 启动服务器
 
 ```bash
 python manage.py runserver
